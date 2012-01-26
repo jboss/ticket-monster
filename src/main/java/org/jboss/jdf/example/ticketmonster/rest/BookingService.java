@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.ejb.Singleton;
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -21,6 +22,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.jboss.jdf.example.ticketmonster.monitor.client.shared.qualifier.Cancelled;
+import org.jboss.jdf.example.ticketmonster.monitor.client.shared.qualifier.Created;
 import org.jboss.jdf.example.ticketmonster.model.Booking;
 import org.jboss.jdf.example.ticketmonster.model.Performance;
 import org.jboss.jdf.example.ticketmonster.model.Seat;
@@ -51,6 +54,12 @@ public class BookingService extends BaseEntityService<Booking> {
     @Inject
     SeatAllocationService seatAllocationService;
 
+    @Inject @Created
+    private Event<Booking> newBookingEvent;
+    
+    @Inject @Cancelled
+    private Event<Booking> cancelledBookingEvent;
+    
     public BookingService() {
         super(Booking.class);
     }
@@ -70,6 +79,7 @@ public class BookingService extends BaseEntityService<Booking> {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
         getEntityManager().remove(booking);
+        cancelledBookingEvent.fire(booking);
         return Response.ok().build();
     }
 
@@ -165,7 +175,7 @@ public class BookingService extends BaseEntityService<Booking> {
             booking.setPerformance(performance);
             booking.setCancellationCode("abc");
             getEntityManager().persist(booking);
-            // And finally, tell the app we succeeded
+            newBookingEvent.fire(booking);
             return Response.ok().entity(booking).type(MediaType.APPLICATION_JSON_TYPE).build();
         } catch (ConstraintViolationException e) {
             // If validation of the data failed using Bean Validation, then send an error

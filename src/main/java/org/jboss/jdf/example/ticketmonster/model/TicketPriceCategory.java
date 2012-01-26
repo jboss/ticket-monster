@@ -13,6 +13,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.jboss.errai.common.client.api.annotations.Portable;
 
 /**
  * <p>
@@ -37,6 +38,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 // TODO Document @JsonIgnoreProperties
 @JsonIgnoreProperties("show")
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "section_id", "show_id", "ticketcategory_id" }))
+@Portable
 public class TicketPriceCategory implements Serializable {
 
     /* Declaration of fields */

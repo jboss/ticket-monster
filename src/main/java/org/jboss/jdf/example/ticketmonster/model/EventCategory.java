@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.jboss.errai.common.client.api.annotations.Portable;
 
 /**
  * <p>
@@ -29,6 +30,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @SuppressWarnings("serial")
 @Entity
+@Portable
 public class EventCategory implements Serializable {
 
     /* Declaration of fields */

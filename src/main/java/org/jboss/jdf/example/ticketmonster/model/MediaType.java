@@ -1,5 +1,7 @@
 package org.jboss.jdf.example.ticketmonster.model;
 
+import org.jboss.errai.common.client.api.annotations.Portable;
+
 /**
  * <p>
  * The {@link MediaType} describes the types of media this application can handle and render.
@@ -20,6 +22,7 @@ package org.jboss.jdf.example.ticketmonster.model;
  * @author Pete Muir
  * 
  */
+@Portable
 public enum MediaType {
 
     /**
