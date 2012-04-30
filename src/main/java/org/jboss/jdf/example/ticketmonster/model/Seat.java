@@ -4,12 +4,15 @@ import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 
+import org.jboss.errai.common.client.api.annotations.Portable;
+
 /**
  * TODO
  * @author Marius Bogoevici
  * @author Pete Muir
  */
 @Embeddable
+@Portable
 public class Seat {
 
     @Min(1)
@@ -25,7 +28,7 @@ public class Seat {
     private Section section;
 
     /** Constructor for persistence */
-    protected Seat() {
+    public Seat() {
     }
 
     /* Boilerplate getters and setters */

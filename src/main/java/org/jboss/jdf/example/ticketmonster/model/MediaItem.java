@@ -13,6 +13,8 @@ import javax.persistence.Id;
 
 import org.hibernate.validator.constraints.URL;
 
+import org.jboss.errai.common.client.api.annotations.Portable;
+
 /**
  * <p>
  * A reference to a media object such as images, sound bites, video recordings, that can be used in the application.
@@ -32,6 +34,7 @@ import org.hibernate.validator.constraints.URL;
  */
 @SuppressWarnings("serial")
 @Entity
+@Portable
 public class MediaItem implements Serializable {
 
     /* Declaration of fields */

@@ -41,23 +41,23 @@ insert into event (id, name, description, picture_id, category_id, major) values
 insert into event (id, name, description, picture_id, category_id, major) values (3, 'Brazil vs. Italy', 'A friendly replay of the famous World Cup final.', 105, 4, false);
 
 insert into show (id, event_id, venue_id) values (1, 1, 1);
-insert into performance (id, show_id, date) values (1, 1, '2012-04-01 19:00:00');
-insert into performance (id, show_id, date) values (2, 1, '2012-04-02 19:00:00');
+insert into performance (id, show_id, date) values (1, 1, '2013-04-01 19:00:00');
+insert into performance (id, show_id, date) values (2, 1, '2013-04-02 19:00:00');
 
 insert into show (id, event_id, venue_id) values (2, 1, 2);
-insert into performance (id, show_id, date) values (3, 2, '2012-04-03 19:30:00');
-insert into performance (id, show_id, date) values (4, 2, '2012-04-04 19:30:00');
+insert into performance (id, show_id, date) values (3, 2, '2013-04-03 19:30:00');
+insert into performance (id, show_id, date) values (4, 2, '2013-04-04 19:30:00');
 
 insert into show (id, event_id, venue_id) values (3, 2, 1);
-insert into performance (id, show_id, date) values (5, 3, '2012-04-05 17:00:00');
-insert into performance (id, show_id, date) values (6, 3, '2012-04-05 19:30:00');
+insert into performance (id, show_id, date) values (5, 3, '2013-04-05 17:00:00');
+insert into performance (id, show_id, date) values (6, 3, '2013-04-05 19:30:00');
 
 insert into show (id, event_id, venue_id) values (4, 2, 2);
-insert into performance (id, show_id, date) values (7, 4, '2012-04-07 17:00:00');
-insert into performance (id, show_id, date) values (8, 4, '2012-04-07 19:30:00');
+insert into performance (id, show_id, date) values (7, 4, '2013-04-07 17:00:00');
+insert into performance (id, show_id, date) values (8, 4, '2013-04-07 19:30:00');
 
 insert into show (id, event_id, venue_id) values (5, 3, 3);
-insert into performance (id, show_id, date) values (9, 5, '2012-05-11 21:00:00');
+insert into performance (id, show_id, date) values (9, 5, '2013-05-11 21:00:00');
 
 
 insert into TicketCategory (id, description) values (1, 'Adult');
