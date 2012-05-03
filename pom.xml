@@ -355,6 +355,7 @@
                     <inplace>true</inplace>
                     <logLevel>INFO</logLevel>
                     <extraJvmArgs>-Xmx512m</extraJvmArgs>
+                    <draftCompile>true</draftCompile>
                     <!-- Configure GWT's development mode (formerly known
                     as hosted mode) to not start the default server (embedded jetty), but to
                     download the HTML host page from the configured runTarget. -->
