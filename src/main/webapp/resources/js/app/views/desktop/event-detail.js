@@ -37,7 +37,7 @@ define([
                 $("#venueSelector").empty().append("<option value='0'>Select a venue</option>");
                 $.each(shows, function (i, show) {
                     $("#venueSelector").append("<option value='" + show.id + "'>" + show.venue.address.city + " : " + show.venue.name + "</option>")
-                })
+                });
                 $("#venueSelector").removeAttr('disabled')
                 if ($("#venueSelector").val()) {
                     $("#venueSelector").change()
