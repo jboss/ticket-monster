@@ -2,102 +2,61 @@ define([
     'backbone',
     'utilities',
     'require',
-    'text!../../../../templates/desktop/booking-details.html',
     'text!../../../../templates/desktop/booking-confirmation.html',
     'text!../../../../templates/desktop/create-booking.html',
-    'text!../../../../templates/desktop/select-section.html',
-    'text!../../../../templates/desktop/ticket-entry.html',
-    'text!../../../../templates/desktop/ticket-entries.html',
+    'text!../../../../templates/desktop/ticket-categories.html',
     'text!../../../../templates/desktop/ticket-summary-view.html',
-    'text!../../../../templates/desktop/ticket-request-summary.html',
     'bootstrap'
 ],function (
     Backbone,
     utilities,
     require,
-    bookingDetailsTemplate,
     bookingConfirmationTemplate,
     createBookingTemplate,
-    selectSectionTemplate,
-    ticketEntryTemplate,
     ticketEntriesTemplate,
-    ticketSummaryViewTemplate,
-    ticketRequestSummaryTemplate){
-
-    var SectionSelectorView = Backbone.View.extend({
-        render:function () {
-            var self = this;
-            utilities.applyTemplate($(this.el), selectSectionTemplate, { sections:_.uniq(_.sortBy(_.pluck(self.model.priceCategories, 'section'), function (item) {
-                return item.id;
-            }), true, function (item) {
-                return item.id;
-            })});
-            return this;
-        }
-    });
-
-    var TicketCategoryView = Backbone.View.extend({
-        events:{
-            "change input":"onChange"
-        },
-        render:function () {
-            utilities.applyTemplate($(this.el), ticketEntryTemplate, this.model);
-            return this;
-        },
-        onChange:function (event) {
-            var value = event.currentTarget.value;
-            if ($.isNumeric(value) && value > 0) {
-                this.model.quantity = value;
-            }
-            else {
-                delete this.model.quantity;
-            }
-        }
-    });
+    ticketSummaryViewTemplate){
 
 
     var TicketCategoriesView = Backbone.View.extend({
         id:'categoriesView',
+        events:{
+            "change input":"onChange"
+        },
         render:function () {
             if (this.model != null) {
                 var priceCategories = _.map(this.model, function (item) {
                     return item.priceCategory;
                 });
                 utilities.applyTemplate($(this.el), ticketEntriesTemplate, {priceCategories:priceCategories});
-
-                _.each(this.model, function (model) {
-                    $("#ticket-category-input-" + model.priceCategory.id).append(new TicketCategoryView({model:model}).render().el);
-
-                });
             } else {
                 $(this.el).empty();
             }
             return this;
+        },
+        onChange:function (event) {
+            var value = event.currentTarget.value;
+            var priceCategoryId = $(event.currentTarget).data("tm-id");
+            var modifiedModelEntry = _.find(this.model, function(item) { return item.priceCategory.id == priceCategoryId});
+            if ($.isNumeric(value) && value > 0) {
+                modifiedModelEntry.quantity = parseInt(value);
+            }
+            else {
+                delete modifiedModelEntry.quantity;
+            }
         }
     });
 
-    var TicketSummaryLineView = Backbone.View.extend({
+    var TicketSummaryView = Backbone.View.extend({
         tagName:'tr',
         events:{
             "click i":"removeEntry"
         },
         render:function () {
-            utilities.applyTemplate($(this.el), ticketRequestSummaryTemplate, {ticketRequest:this.model.ticketRequest});
-            return this;
+            var self = this;
+            utilities.applyTemplate($(this.el), ticketSummaryViewTemplate, this.model.bookingRequest);
         },
         removeEntry:function () {
             this.model.tickets.splice(this.model.index, 1);
-        }
-    });
-
-    var TicketSummaryView = Backbone.View.extend({
-        render:function () {
-            var self = this;
-            utilities.applyTemplate($(this.el), ticketSummaryViewTemplate, this.model.bookingRequest);
-            _.each(this.model.bookingRequest.tickets, function (ticketRequest, index, tickets) {
-                $('#ticketRequestSummary')
-                    .append(new TicketSummaryLineView({model:{ticketRequest:ticketRequest, index:index, tickets:tickets, parentView:self}}).render().el);
-            });
         }
     });
 
@@ -118,9 +77,14 @@ define([
                 self.currentPerformance = _.find(selectedShow.performances, function (item) {
                     return item.id == self.model.performanceId;
                 });
-                utilities.applyTemplate($(self.el), createBookingTemplate, { show:selectedShow,
+
+                var id = function (item) {return item.id;};
+                // prepare a list of sections to populate the dropdown
+                var sections = _.uniq(_.sortBy(_.pluck(selectedShow.priceCategories, 'section'), id), true, id);
+                utilities.applyTemplate($(self.el), createBookingTemplate, {
+                    sections:sections,
+                    show:selectedShow,
                     performance:self.currentPerformance});
-                self.selectorView = new SectionSelectorView({model:selectedShow, el:$("#sectionSelectorPlaceholder")}).render();
                 self.ticketCategoriesView = new TicketCategoriesView({model:{}, el:$("#ticketCategoriesViewPlaceholder") });
                 self.ticketSummaryView = new TicketSummaryView({model:self.model, el:$("#ticketSummaryView")});
                 self.show = selectedShow;
@@ -191,7 +155,6 @@ define([
             this.ticketCategoriesView.model = null;
             $('option:selected', 'select').removeAttr('selected');
             this.ticketCategoriesView.render();
-            this.selectorView.render();
             this.updateQuantities();
         },
         updateQuantities:function () {

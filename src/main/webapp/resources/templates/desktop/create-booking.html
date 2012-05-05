@@ -9,7 +9,20 @@
     <div class="span5 well">
         <h4 class="page-header">Select tickets</h4>
 
-        <div id="sectionSelectorPlaceholder" class="row-fluid"></div>
+        <div id="sectionSelectorPlaceholder" class="row-fluid">
+            <div class="control-group">
+                <label class="control-label" for="sectionSelect">Section</label>
+
+                <div class="controls">
+                    <select id="sectionSelect">
+                        <option value="-1" selected="true">Choose a section</option>
+                        <% _.each(sections, function(section) { %>
+                        <option value="<%=section.id%>"><%=section.name%> - <%=section.description%></option>
+                        <% }) %>
+                    </select>
+                </div>
+            </div>
+        </div>
         <div id="ticketCategoriesViewPlaceholder" class="row-fluid"></div>
     </div>
 

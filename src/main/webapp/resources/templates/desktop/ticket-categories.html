@@ -1,0 +1,27 @@
+<% if (priceCategories.length > 0) { %>
+<% _.each(priceCategories, function(priceCategory) { %>
+<div id="ticket-category-input-<%=priceCategory.id%>">
+    <div class="control-group">
+        <label class="control-label"><%=priceCategory.ticketCategory.description%></label>
+
+        <div class="controls">
+            <div class="input-append">
+                <input class="span2" rel="tooltip" title="Enter value" type="number" min="1"
+                                             max="9"
+                                             data-tm-id="<%=priceCategory.id%>"
+                                             placeholder="Number of tickets"
+                                             name="tickets-<%=priceCategory.ticketCategory.id%>"/>
+                <span class="add-on" style="margin-bottom:9px">@ $<%=priceCategory.price%></span>
+            </div>
+        </div>
+    </div>
+</div>
+<% }) %>
+<div class="control-group">
+    <label class="control-label"/>
+
+    <div class="controls">
+        <input type="button" class="btn btn-primary" name="add" value="Add tickets"/>
+    </div>
+</div>
+<% } %>
