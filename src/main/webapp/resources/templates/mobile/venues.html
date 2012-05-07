@@ -1,0 +1,45 @@
+<div data-role="header">
+    <a data-role="button" data-icon="home" href="#">Home</a>
+    <h3>Cities</h3>
+</div>
+<div data-role="content" id='itemMenu'>
+    <div id='cityMenu' data-role='listview' data-filter='true' data-filter-placeholder='City name ...'>
+
+        <%
+        _.each(cities, function (city) {
+        %>
+
+
+        <li>
+            <a href="#"><%= city %></a>
+            <ul id="city-<%=city%>">
+                <%
+                _.each(model.models, function (model) {
+                if (model.get('address').city == city) {
+                console.log(model.get('address'))
+                %>
+                <li>
+
+
+                    <a href="#venues/<%=model.attributes.id%>"><%=model.attributes.name%></a>
+
+
+                </li>
+                <% }
+                });
+                %>
+            </ul>
+        </li>
+
+
+
+        <% }); %>
+    </div>
+
+
+</div>
+
+
+
+
+

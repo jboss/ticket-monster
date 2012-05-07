@@ -122,6 +122,7 @@ define("router",[
             model.bind("change",
                 function () {
                     eventDetailView.render()
+                    $.mobile.changePage($("#container"), {transition:'slide', changeHash:false});
                 }).fetch();
         },
         venueDetail:function (id) {
@@ -130,6 +131,7 @@ define("router",[
             model.bind("change",
                 function () {
                     venueDetailView.render()
+                    $.mobile.changePage($("#container"), {transition:'slide', changeHash:false});
                 }).fetch();
         },
         bookingDetail:function (id) {
