@@ -15,7 +15,18 @@
     </p>
 
 
-    <div id="sectionSelectorPlaceholder"/>
+    <div id="sectionSelectorPlaceholder">
+        <div data-role="fieldcontain">
+            <label for="sectionSelect">Section</label>
+            <select id="sectionSelect">
+                <option value="-1" selected="true">Choose a section</option>
+                <% _.each(sections, function(section) { %>
+                <option value="<%=section.id%>"><%=section.name%> - <%=section.description%></option>
+                <% }) %>
+            </select>
+        </div>
+
+    </div>
 
     <div id="ticketCategoriesViewPlaceholder" style="display:none;"/>
 

@@ -5,8 +5,6 @@ define([
     'text!../../../../templates/mobile/booking-details.html',
     'text!../../../../templates/mobile/create-booking.html',
     'text!../../../../templates/mobile/confirm-booking.html',
-    'text!../../../../templates/mobile/select-section.html',
-    'text!../../../../templates/mobile/ticket-entry.html',
     'text!../../../../templates/mobile/ticket-entries.html',
     'text!../../../../templates/mobile/ticket-summary-view.html'
 ], function (
@@ -16,47 +14,14 @@ define([
     bookingDetailsTemplate,
     createBookingTemplate,
     confirmBookingTemplate,
-    selectSectionTemplate,
-    ticketEntryTemplate,
     ticketEntriesTemplate,
     ticketSummaryViewTemplate) {
 
-    var SectionSelectorView = Backbone.View.extend({
-        render:function () {
-            var self = this;
-            utilities.applyTemplate($(this.el), selectSectionTemplate, { sections:_.uniq(_.sortBy(_.pluck(self.model.priceCategories, 'section'), function (item) {
-                return item.id;
-            }), true, function (item) {
-                return item.id;
-            })});
-            $(this.el).trigger('pagecreate');
-            return this;
-        }
-    });
-
-    var TicketCategoryView = Backbone.View.extend({
+    var TicketCategoriesView = Backbone.View.extend({
+        id:'categoriesView',
         events:{
             "change input":"onChange"
         },
-        render:function () {
-            utilities.applyTemplate($(this.el), ticketEntryTemplate, this.model);
-            $(this.el).trigger('pagecreate');
-            return this;
-        },
-        onChange:function (event) {
-            var value = event.currentTarget.value;
-            if (value != '' && value != 0) {
-                this.model.quantity = parseInt(value);
-            }
-            else {
-                delete this.model.quantity;
-            }
-        }
-    });
-
-
-    var TicketCategoriesView = Backbone.View.extend({
-        id:'categoriesView',
         render:function () {
             var views = {};
 
@@ -65,16 +30,22 @@ define([
                     return item.priceCategory;
                 });
                 utilities.applyTemplate($(this.el), ticketEntriesTemplate, {priceCategories:priceCategories});
-
-                _.each(this.model, function (model) {
-                    $("#ticket-category-input-" + model.priceCategory.id).append(new TicketCategoryView({model:model}).render().el);
-
-                });
             } else {
                 $(this.el).empty();
             }
             $(this.el).trigger('pagecreate');
             return this;
+        },
+        onChange:function (event) {
+            var value = event.currentTarget.value;
+            var priceCategoryId = $(event.currentTarget).data("tm-id");
+            var modifiedModelEntry = _.find(this.model, function(item) { return item.priceCategory.id == priceCategoryId});
+            if ($.isNumeric(value) && value > 0) {
+                modifiedModelEntry.quantity = parseInt(value);
+            }
+            else {
+                delete modifiedModelEntry.quantity;
+            }
         }
     });
 
@@ -143,10 +114,14 @@ define([
                 self.model.performance = _.find(selectedShow.performances, function (item) {
                     return item.id == self.model.performanceId;
                 });
+                var id = function (item) {return item.id;};
+                // prepare a list of sections to populate the dropdown
+                var sections = _.uniq(_.sortBy(_.pluck(selectedShow.priceCategories, 'section'), id), true, id);
+
                 utilities.applyTemplate($(self.el), createBookingTemplate, { show:selectedShow,
-                    performance:self.model.performance});
+                    performance:self.model.performance,
+                    sections:sections});
                 $(self.el).trigger('pagecreate');
-                self.selectorView = new SectionSelectorView({model:selectedShow, el:$("#sectionSelectorPlaceholder")}).render();
                 self.ticketCategoriesView = new TicketCategoriesView({model:{}, el:$("#ticketCategoriesViewPlaceholder") });
                 self.model.show = selectedShow;
                 self.ticketCategoriesView.render();

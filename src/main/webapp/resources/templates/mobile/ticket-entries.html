@@ -3,6 +3,13 @@
     <% if (priceCategories.length > 0) { %>
     <% _.each(priceCategories, function(priceCategory) { %>
     <div id="ticket-category-input-<%=priceCategory.id%>"/>
+
+    <fieldset data-role="fieldcontain">
+        <label for="ticket-<%=priceCategory.id%>"><%=priceCategory.ticketCategory.description%>($<%=priceCategory.price%>)</label>
+        <input id="ticket-<%=priceCategory.id%>"  data-tm-id="<%=priceCategory.id%>" type="number" placeholder="Enter value" name="tickets"/>
+    </fieldset>
+
+
     <% }) %>
 </form>
 <% } %>
