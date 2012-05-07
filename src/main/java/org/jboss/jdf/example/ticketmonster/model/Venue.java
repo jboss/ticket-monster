@@ -98,7 +98,7 @@ public class Venue implements Serializable {
      * An optional media item to entice punters to the venue. The <code>@ManyToOne</code> establishes the relationship.
      */
     @ManyToOne
-    private MediaItem picture;
+    private MediaItem mediaItem;
 
     /* Boilerplate getters and setters */
     
@@ -126,12 +126,12 @@ public class Venue implements Serializable {
         this.address = address;
     }
 
-    public MediaItem getPicture() {
-        return picture;
+    public MediaItem getMediaItem() {
+        return mediaItem;
     }
 
-    public void setPicture(MediaItem description) {
-        this.picture = description;
+    public void setMediaItem(MediaItem description) {
+        this.mediaItem = description;
     }
 
     public String getDescription() {

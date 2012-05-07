@@ -56,7 +56,7 @@
     </div>
     <div data-role="content">
         <h3><%=name%></h3>
-        <img width='100px' src='rest/media/<%=picture.id%>'/>
+        <img width='100px' src='rest/media/<%=mediaItem.id%>'/>
         <p><%=description%></p>
         <div data-role="fieldcontain">
             <label for="showSelector"><strong>Where</strong></label>
@@ -93,7 +93,7 @@
 </script>
 
 <script type="text/template" id="event-venue-description">
-        <img width="100" src="rest/media/<%=venue.picture.id%>"/></p>
+        <img width="100" src="rest/media/<%=venue.mediaItem.id%>"/></p>
         <%= venue.description %>
         <address>
             <p><strong>Address:</strong></p>
@@ -108,7 +108,7 @@
     </div>
     <div data-role="content">
         <h3><%=name%></h3>
-        <img width='100px' src='rest/media/<%=picture.id%>'/>
+        <img width='100px' src='rest/media/<%=mediaItem.id%>'/>
         <p><%=description%></p>
         <div data-role="fieldcontain">
             <label for="showSelector"><strong>What</strong></label>
@@ -145,7 +145,7 @@
 </script>
 
 <script type="text/template" id="venue-event-description">
-    <img width="100" src="rest/media/<%=event.picture.id%>"/></p>
+    <img width="100" src="rest/media/<%=event.mediaItem.id%>"/></p>
     <%= event.description %>
 </script>
 

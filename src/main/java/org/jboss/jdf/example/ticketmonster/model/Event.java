@@ -106,7 +106,7 @@ public class Event implements Serializable {
      * 
      */
     @ManyToOne
-    private MediaItem picture;
+    private MediaItem mediaItem;
 
     /**
      * <p>
@@ -142,12 +142,12 @@ public class Event implements Serializable {
         this.name = name;
     }
 
-    public MediaItem getPicture() {
-        return picture;
+    public MediaItem getMediaItem() {
+        return mediaItem;
     }
 
-    public void setPicture(MediaItem picture) {
-        this.picture = picture;
+    public void setMediaItem(MediaItem picture) {
+        this.mediaItem = picture;
     }
 
     public EventCategory getCategory() {

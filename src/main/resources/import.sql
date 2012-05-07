@@ -5,14 +5,14 @@ insert into MediaItem (id, mediaType, url) values (103, 'IMAGE', 'http://dl.drop
 insert into MediaItem (id, mediaType, url) values (104, 'IMAGE', 'http://dl.dropbox.com/u/65660684/640px-West-stand-bmo-field.jpg')
 insert into MediaItem (id, mediaType, url) values (105, 'IMAGE', 'http://dl.dropbox.com/u/65660684/640px-Brazil_national_football_team_training_at_Dobsonville_Stadium_2010-06-03_13.jpg')
 
-insert into Venue (id, name, city, country, street, description, picture_id, capacity) values (1, 'Roy Thomson Hall', 'Toronto', 'Canada', '60 Simcoe Street','Roy Thomson Hall is the home of the Toronto Symphony Orchestra and the Toronto Mendelssohn Choir.',103, 2630);
+insert into Venue (id, name, city, country, street, description, mediaitem_id, capacity) values (1, 'Roy Thomson Hall', 'Toronto', 'Canada', '60 Simcoe Street','Roy Thomson Hall is the home of the Toronto Symphony Orchestra and the Toronto Mendelssohn Choir.',103, 2630);
 
 insert into Section (id, name, description, numberofrows, rowcapacity, venue_id) values (1, 'A', 'Premier platinum reserve',40, 100, 1);
 insert into Section (id, name, description, numberofrows, rowcapacity, venue_id) values (2, 'B', 'Premier gold reserve', 40, 100, 1);
 insert into Section (id, name, description, numberofrows, rowcapacity, venue_id) values (3, 'C', 'Premier silver reserve', 30, 200, 1);
 insert into Section (id, name, description, numberofrows, rowcapacity, venue_id) values (4, 'D', 'General', 80, 200, 1);
 
-insert into Venue (id, name, city, country, street, description, picture_id, capacity) values (2, 'Sydney Opera House', 'Sydney', 'Australia', 'Bennelong point', 'The Sydney Opera House is a multi-venue performing arts centre in Sydney, New South Wales, Australia' , 102, 18000);
+insert into Venue (id, name, city, country, street, description, mediaitem_id, capacity) values (2, 'Sydney Opera House', 'Sydney', 'Australia', 'Bennelong point', 'The Sydney Opera House is a multi-venue performing arts centre in Sydney, New South Wales, Australia' , 102, 18000);
 
 insert into Section (id, name, description, numberofrows, rowcapacity, venue_id) values (100, 'S1', 'Front left', 50, 50, 2);
 insert into Section (id, name, description, numberofrows, rowcapacity, venue_id) values (101, 'S2', 'Front centre', 50, 50, 2);
@@ -22,7 +22,7 @@ insert into Section (id, name, description, numberofrows, rowcapacity, venue_id)
 insert into Section (id, name, description, numberofrows, rowcapacity, venue_id) values (105, 'S6', 'Rear right', 50, 50, 2);
 insert into Section (id, name, description, numberofrows, rowcapacity, venue_id) values (106, 'S7', 'Balcony', 1, 30, 2);
 
-insert into Venue (id, name, city, country, street, description, picture_id, capacity) values (3, 'BMO Field', 'Toronto', 'Canada', '170 Princes Boulevard','BMO Field is a Canadian soccer stadium located in Exhibition Place in the city of Toronto.',104, 21140);
+insert into Venue (id, name, city, country, street, description, mediaitem_id, capacity) values (3, 'BMO Field', 'Toronto', 'Canada', '170 Princes Boulevard','BMO Field is a Canadian soccer stadium located in Exhibition Place in the city of Toronto.',104, 21140);
 
 insert into Section (id, name, description, numberofrows, rowcapacity, venue_id) values (5, 'A', 'Premier platinum reserve',40, 100, 3);
 insert into Section (id, name, description, numberofrows, rowcapacity, venue_id) values (6, 'B', 'Premier gold reserve', 40, 100, 3);
@@ -36,9 +36,9 @@ insert into eventcategory (id, description) values (3, 'Musical');
 insert into eventcategory (id, description) values (4, 'Sporting');
 insert into eventcategory (id, description) values (5, 'Comedy');
 
-insert into event (id, name, description, picture_id, category_id) values (1, 'Rock concert of the decade', 'Get ready to rock your night away with this megaconcert extravaganza from 10 of the biggest rock stars of the 80''s', 100, 1);
-insert into event (id, name, description, picture_id, category_id) values (2, 'Shane''s Sock Puppets', 'This critically acclaimed masterpiece will take you on an emotional rollercoaster the likes of which you''ve never experienced.', 101, 2);
-insert into event (id, name, description, picture_id, category_id) values (3, 'Brazil vs. Italy', 'A friendly replay of the famous World Cup final.', 105, 4);
+insert into event (id, name, description, mediaitem_id, category_id) values (1, 'Rock concert of the decade', 'Get ready to rock your night away with this megaconcert extravaganza from 10 of the biggest rock stars of the 80''s', 100, 1);
+insert into event (id, name, description, mediaitem_id, category_id) values (2, 'Shane''s Sock Puppets', 'This critically acclaimed masterpiece will take you on an emotional rollercoaster the likes of which you''ve never experienced.', 101, 2);
+insert into event (id, name, description, mediaitem_id, category_id) values (3, 'Brazil vs. Italy', 'A friendly replay of the famous World Cup final.', 105, 4);
 
 insert into show (id, event_id, venue_id) values (1, 1, 1);
 insert into performance (id, show_id, date) values (1, 1, '2013-04-01 19:00:00');
