@@ -30,7 +30,7 @@ import org.jboss.jdf.example.ticketmonster.model.Seat;
 import org.jboss.jdf.example.ticketmonster.model.Section;
 import org.jboss.jdf.example.ticketmonster.model.Ticket;
 import org.jboss.jdf.example.ticketmonster.model.TicketCategory;
-import org.jboss.jdf.example.ticketmonster.model.TicketPriceCategory;
+import org.jboss.jdf.example.ticketmonster.model.TicketPrice;
 import org.jboss.jdf.example.ticketmonster.service.SeatAllocationService;
 
 /**
@@ -102,12 +102,12 @@ public class BookingService extends BaseEntityService<Booking> {
             // First, validate the posted data
             // There will be more validation when persistence occurs
 
-        	Set<Long> priceCategoryIds = new HashSet<Long>();
+        	Set<Long> TicketPrices = new HashSet<Long>();
             for (TicketRequest ticketRequest : bookingRequest.getTicketRequests()) {
-                if (priceCategoryIds.contains(ticketRequest.getPriceCategory())) {
+                if (TicketPrices.contains(ticketRequest.getTicketPrice())) {
                     throw new RuntimeException("Duplicate price category id");
                 }
-                priceCategoryIds.add(ticketRequest.getPriceCategory());
+                TicketPrices.add(ticketRequest.getTicketPrice());
             }
 
             // First, load the entities that make up this booking's relationships
@@ -115,12 +115,12 @@ public class BookingService extends BaseEntityService<Booking> {
 
             // As we can have a mix of ticket types in a booking, we need to load all of them that are relevant, 
             // id
-            List<TicketPriceCategory> ticketPrices = (List<TicketPriceCategory>) getEntityManager()
-                    .createQuery("select p from TicketPriceCategory p where p.id in :ids")
-                    .setParameter("ids", priceCategoryIds).getResultList();
+            List<TicketPrice> ticketPrices = (List<TicketPrice>) getEntityManager()
+                    .createQuery("select p from TicketPrice p where p.id in :ids")
+                    .setParameter("ids", TicketPrices).getResultList();
             // Now, map them by id
-            Map<Long, TicketPriceCategory> ticketPricesById = new HashMap<Long, TicketPriceCategory>();
-            for (TicketPriceCategory ticketPrice : ticketPrices) {
+            Map<Long, TicketPrice> ticketPricesById = new HashMap<Long, TicketPrice>();
+            for (TicketPrice ticketPrice : ticketPrices) {
                 ticketPricesById.put(ticketPrice.getId(), ticketPrice);
             }
 
@@ -135,13 +135,13 @@ public class BookingService extends BaseEntityService<Booking> {
             // we want to allocate ticket requests that belong to the same section contiguously
             Map<Section, Map<TicketCategory, TicketRequest>> ticketRequestsPerSection = new LinkedHashMap<Section, Map<TicketCategory, TicketRequest>>();
             for (TicketRequest ticketRequest : bookingRequest.getTicketRequests()) {
-                final TicketPriceCategory priceCategory = ticketPricesById.get(ticketRequest.getPriceCategory());
-                if (!ticketRequestsPerSection.containsKey(priceCategory.getSection())) {
+                final TicketPrice ticketPrice = ticketPricesById.get(ticketRequest.getTicketPrice());
+                if (!ticketRequestsPerSection.containsKey(ticketPrice.getSection())) {
                     ticketRequestsPerSection
-                            .put(priceCategory.getSection(), new LinkedHashMap<TicketCategory, TicketRequest>());
+                            .put(ticketPrice.getSection(), new LinkedHashMap<TicketCategory, TicketRequest>());
                 }
-                ticketRequestsPerSection.get(priceCategory.getSection()).put(
-                        ticketPricesById.get(ticketRequest.getPriceCategory()).getTicketCategory(), ticketRequest);
+                ticketRequestsPerSection.get(ticketPrice.getSection()).put(
+                        ticketPricesById.get(ticketRequest.getTicketPrice()).getTicketCategory(), ticketRequest);
             }
 
             // Now, we can allocate the tickets
@@ -162,9 +162,9 @@ public class BookingService extends BaseEntityService<Booking> {
                 // Now, add a ticket for each requested ticket to the booking
                 for (TicketCategory ticketCategory : ticketRequestsByCategories.keySet()) {
                     final TicketRequest ticketRequest = ticketRequestsByCategories.get(ticketCategory);
-                    final TicketPriceCategory ticketPriceCategory = ticketPricesById.get(ticketRequest.getPriceCategory());
+                    final TicketPrice ticketPrice = ticketPricesById.get(ticketRequest.getTicketPrice());
                     for (int i = 0; i < ticketRequest.getQuantity(); i++) {
-                        Ticket ticket = new Ticket(seats.get(seatCounter + i), ticketCategory, ticketPriceCategory.getPrice());
+                        Ticket ticket = new Ticket(seats.get(seatCounter + i), ticketCategory, ticketPrice.getPrice());
                         // getEntityManager().persist(ticket);
                         booking.getTickets().add(ticket);
                     }

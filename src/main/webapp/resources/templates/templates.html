@@ -253,9 +253,9 @@
 
 
 <script id="ticket-entries" type="text/template">
-    <% if (priceCategories.length > 0) { %>
-    <% _.each(priceCategories, function(priceCategory) { %>
-    <div id="ticket-category-input-<%=priceCategory.id%>"/>
+    <% if (ticketPrices.length > 0) { %>
+    <% _.each(ticketPrices, function(ticketPrice) { %>
+    <div id="ticket-category-input-<%=ticketPrice.id%>"/>
     <% }) %>
     <div class="control-group">
         <label class="control-label"/>
@@ -268,13 +268,13 @@
 
 <script id="ticket-entry" type="text/template">
     <div class="control-group">
-        <label class="control-label"><%=priceCategory.ticketCategory.description%></label>
+        <label class="control-label"><%=ticketPrice.ticketCategory.description%></label>
 
         <div class="controls">
             <div class="input-append"><input class="span2" rel="tooltip" title="Enter value" type="number" min="1"
                         max="9"
                         placeholder="Number of tickets"
-                        name="tickets-<%=priceCategory.ticketCategory.id%>"/><span class="add-on" style="margin-bottom:9px">@ $<%=priceCategory.price%></span>
+                        name="tickets-<%=ticketPrice.ticketCategory.id%>"/><span class="add-on" style="margin-bottom:9px">@ $<%=ticketPrice.price%></span>
             </div>
         </div>
     </div>
@@ -312,10 +312,10 @@
 </script>
 
 <script id="ticket-request-summary" type="text/template">
-        <td><%= ticketRequest.priceCategory.section.name %></td>
-        <td><%= ticketRequest.priceCategory.ticketCategory.description %></td>
+        <td><%= ticketRequest.ticketPrice.section.name %></td>
+        <td><%= ticketRequest.ticketPrice.ticketCategory.description %></td>
         <td><%= ticketRequest.quantity %></td>
-        <td>$<%=ticketRequest.priceCategory.price%></td>
+        <td>$<%=ticketRequest.ticketPrice.price%></td>
         <td><i class="icon-trash"/></td>
 </script>
 

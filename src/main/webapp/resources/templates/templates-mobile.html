@@ -221,9 +221,9 @@
 <script id="ticket-entries" type="text/template">
     <form name="ticketCategories">
         <h4>Select tickets by category</h4>
-        <% if (priceCategories.length > 0) { %>
-        <% _.each(priceCategories, function(priceCategory) { %>
-        <div id="ticket-category-input-<%=priceCategory.id%>"/>
+        <% if (ticketPrices.length > 0) { %>
+        <% _.each(ticketPrices, function(ticketPrice) { %>
+        <div id="ticket-category-input-<%=ticketPrice.id%>"/>
         <% }) %>
     </form>
     <% } %>
@@ -231,8 +231,8 @@
 
 <script id="ticket-entry" type="text/template">
     <fieldset data-role="fieldcontain">
-        <label for="ticket-<%=priceCategory.id%>"><%=priceCategory.ticketCategory.description%>($<%=priceCategory.price%>)</label>
-        <input id="ticket-<%=priceCategory.id%>" type="number" placeholder="Enter value" name="tickets"/></fieldset>
+        <label for="ticket-<%=ticketPrice.id%>"><%=ticketPrice.ticketCategory.description%>($<%=ticketPrice.price%>)</label>
+        <input id="ticket-<%=ticketPrice.id%>" type="number" placeholder="Enter value" name="tickets"/></fieldset>
 </script>
 
 <script id="ticket-summary-view" type="text/template">
@@ -250,9 +250,9 @@
             <% _.each(ticketRequest, function(model) { %>
             <% if (model.quantity != undefined) { %>
             <tr>
-                <td><%= model.priceCategory.section.name %></td>
-                <td><%= model.priceCategory.ticketCategory.description %></td>
-                <td>$<%= model.priceCategory.price %></td>
+                <td><%= model.ticketPrice.section.name %></td>
+                <td><%= model.ticketPrice.ticketCategory.description %></td>
+                <td>$<%= model.ticketPrice.price %></td>
                 <td><%= model.quantity %></td>
             </tr>
             <% } %>

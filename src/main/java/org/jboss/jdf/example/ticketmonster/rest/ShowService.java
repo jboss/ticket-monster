@@ -18,7 +18,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
 import org.jboss.jdf.example.ticketmonster.model.Show;
-import org.jboss.jdf.example.ticketmonster.model.TicketPriceCategory;
+import org.jboss.jdf.example.ticketmonster.model.TicketPrice;
 
 /**
  * @author Marius Bogoevici
@@ -54,21 +54,21 @@ public class ShowService extends BaseEntityService<Show> {
     @GET
     @Path("/{showId:[0-9][0-9]*}/pricing")
     @Produces(MediaType.APPLICATION_JSON)
-    public Map<Long,List<TicketPriceCategory>> getPricing(@PathParam("showId") Long showId) {
-        Query query = getEntityManager().createQuery("select pc from PriceCategory pc where pc.show.id = :showId order by pc.section.id");
+    public Map<Long,List<TicketPrice>> getPricing(@PathParam("showId") Long showId) {
+        Query query = getEntityManager().createQuery("select tp from TicketPrice where tp.show.id = :showId order by tp.section.id");
         query.setParameter("showId", showId);
         
         @SuppressWarnings("unchecked")
-        List<TicketPriceCategory> priceCategories = query.getResultList();
+        List<TicketPrice> ticketPrices = query.getResultList();
         
-        Map<Long, List<TicketPriceCategory>> priceCategoryMap = new LinkedHashMap<Long, List<TicketPriceCategory>> ();
-        for (TicketPriceCategory priceCategory : priceCategories) {
-           if (!priceCategoryMap.containsKey(priceCategory.getSection().getId())) {
-               priceCategoryMap.put(priceCategory.getSection().getId(), new ArrayList<TicketPriceCategory>());
+        Map<Long, List<TicketPrice>> ticketPriceMap = new LinkedHashMap<Long, List<TicketPrice>> ();
+        for (TicketPrice ticketPrice : ticketPrices) {
+           if (!ticketPriceMap.containsKey(ticketPrice.getSection().getId())) {
+               ticketPriceMap.put(ticketPrice.getSection().getId(), new ArrayList<TicketPrice>());
            }
-           priceCategoryMap.get(priceCategory.getSection().getId()).add(priceCategory);
+           ticketPriceMap.get(ticketPrice.getSection().getId()).add(ticketPrice);
         }
-        return priceCategoryMap;
+        return ticketPriceMap;
     }
 
     @GET

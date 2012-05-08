@@ -24,10 +24,10 @@ define([
         },
         render:function () {
             if (this.model != null) {
-                var priceCategories = _.map(this.model, function (item) {
-                    return item.priceCategory;
+                var ticketPrices = _.map(this.model, function (item) {
+                    return item.ticketPrice;
                 });
-                utilities.applyTemplate($(this.el), ticketEntriesTemplate, {priceCategories:priceCategories});
+                utilities.applyTemplate($(this.el), ticketEntriesTemplate, {ticketPrices:ticketPrices});
             } else {
                 $(this.el).empty();
             }
@@ -35,8 +35,8 @@ define([
         },
         onChange:function (event) {
             var value = event.currentTarget.value;
-            var priceCategoryId = $(event.currentTarget).data("tm-id");
-            var modifiedModelEntry = _.find(this.model, function(item) { return item.priceCategory.id == priceCategoryId});
+            var ticketPriceId = $(event.currentTarget).data("tm-id");
+            var modifiedModelEntry = _.find(this.model, function(item) { return item.ticketPrice.id == ticketPriceId});
             if ($.isNumeric(value) && value > 0) {
                 modifiedModelEntry.quantity = parseInt(value);
             }
@@ -80,7 +80,7 @@ define([
 
                 var id = function (item) {return item.id;};
                 // prepare a list of sections to populate the dropdown
-                var sections = _.uniq(_.sortBy(_.pluck(selectedShow.priceCategories, 'section'), id), true, id);
+                var sections = _.uniq(_.sortBy(_.pluck(selectedShow.ticketPrices, 'section'), id), true, id);
                 utilities.applyTemplate($(self.el), createBookingTemplate, {
                     sections:sections,
                     show:selectedShow,
@@ -94,21 +94,21 @@ define([
             });
         },
         refreshPrices:function (event) {
-            var priceCategories = _.filter(this.show.priceCategories, function (item) {
+            var ticketPrices = _.filter(this.show.ticketPrices, function (item) {
                 return item.section.id == event.currentTarget.value;
             });
-            var priceCategoryInputs = new Array();
-            _.each(priceCategories, function (priceCategory) {
-                priceCategoryInputs.push({priceCategory:priceCategory});
+            var ticketPriceInputs = new Array();
+            _.each(ticketPrices, function (ticketPrice) {
+                ticketPriceInputs.push({ticketPrice:ticketPrice});
             });
-            this.ticketCategoriesView.model = priceCategoryInputs;
+            this.ticketCategoriesView.model = ticketPriceInputs;
             this.ticketCategoriesView.render();
         },
         save:function (event) {
             var bookingRequest = {ticketRequests:[]};
             var self = this;
             bookingRequest.ticketRequests = _.map(this.model.bookingRequest.tickets, function (ticket) {
-                return {priceCategory:ticket.priceCategory.id, quantity:ticket.quantity}
+                return {ticketPrice:ticket.ticketPrice.id, quantity:ticket.quantity}
             });
             bookingRequest.email = this.model.bookingRequest.email;
             bookingRequest.performance = this.model.performanceId
@@ -142,13 +142,13 @@ define([
                 if (model.quantity != undefined) {
                     var found = false;
                     _.each(self.model.bookingRequest.tickets, function (ticket) {
-                        if (ticket.priceCategory.id == model.priceCategory.id) {
+                        if (ticket.ticketPrice.id == model.ticketPrice.id) {
                             ticket.quantity += model.quantity;
                             found = true;
                         }
                     });
                     if (!found) {
-                        self.model.bookingRequest.tickets.push({priceCategory:model.priceCategory, quantity:model.quantity});
+                        self.model.bookingRequest.tickets.push({ticketPrice:model.ticketPrice, quantity:model.quantity});
                     }
                 }
             });
@@ -160,18 +160,18 @@ define([
         updateQuantities:function () {
             // make sure that tickets are sorted by section and ticket category
             this.model.bookingRequest.tickets.sort(function (t1, t2) {
-                if (t1.priceCategory.section.id != t2.priceCategory.section.id) {
-                    return t1.priceCategory.section.id - t2.priceCategory.section.id;
+                if (t1.ticketPrice.section.id != t2.ticketPrice.section.id) {
+                    return t1.ticketPrice.section.id - t2.ticketPrice.section.id;
                 }
                 else {
-                    return t1.priceCategory.ticketCategory.id - t2.priceCategory.ticketCategory.id;
+                    return t1.ticketPrice.ticketCategory.id - t2.ticketPrice.ticketCategory.id;
                 }
             });
 
             this.model.bookingRequest.totals = _.reduce(this.model.bookingRequest.tickets, function (totals, ticketRequest) {
                 return {
                     tickets:totals.tickets + ticketRequest.quantity,
-                    price:totals.price + ticketRequest.quantity * ticketRequest.priceCategory.price
+                    price:totals.price + ticketRequest.quantity * ticketRequest.ticketPrice.price
                 };
             }, {tickets:0, price:0.0});
 

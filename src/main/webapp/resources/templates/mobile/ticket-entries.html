@@ -1,12 +1,12 @@
 <form name="ticketCategories">
     <h4>Select tickets by category</h4>
-    <% if (priceCategories.length > 0) { %>
-    <% _.each(priceCategories, function(priceCategory) { %>
-    <div id="ticket-category-input-<%=priceCategory.id%>"/>
+    <% if (ticketPrices.length > 0) { %>
+    <% _.each(ticketPrices, function(ticketPrice) { %>
+    <div id="ticket-category-input-<%=ticketPrice.id%>"/>
 
     <fieldset data-role="fieldcontain">
-        <label for="ticket-<%=priceCategory.id%>"><%=priceCategory.ticketCategory.description%>($<%=priceCategory.price%>)</label>
-        <input id="ticket-<%=priceCategory.id%>"  data-tm-id="<%=priceCategory.id%>" type="number" placeholder="Enter value" name="tickets"/>
+        <label for="ticket-<%=ticketPrice.id%>"><%=ticketPrice.ticketCategory.description%>($<%=ticketPrice.price%>)</label>
+        <input id="ticket-<%=ticketPrice.id%>"  data-tm-id="<%=ticketPrice.id%>" type="number" placeholder="Enter value" name="tickets"/>
     </fieldset>
 
 

@@ -26,10 +26,10 @@ define([
             var views = {};
 
             if (this.model != null) {
-                var priceCategories = _.map(this.model, function (item) {
-                    return item.priceCategory;
+                var ticketPrices = _.map(this.model, function (item) {
+                    return item.ticketPrice;
                 });
-                utilities.applyTemplate($(this.el), ticketEntriesTemplate, {priceCategories:priceCategories});
+                utilities.applyTemplate($(this.el), ticketEntriesTemplate, {ticketPrices:ticketPrices});
             } else {
                 $(this.el).empty();
             }
@@ -38,8 +38,8 @@ define([
         },
         onChange:function (event) {
             var value = event.currentTarget.value;
-            var priceCategoryId = $(event.currentTarget).data("tm-id");
-            var modifiedModelEntry = _.find(this.model, function(item) { return item.priceCategory.id == priceCategoryId});
+            var ticketPriceId = $(event.currentTarget).data("tm-id");
+            var modifiedModelEntry = _.find(this.model, function(item) { return item.ticketPrice.id == ticketPriceId});
             if ($.isNumeric(value) && value > 0) {
                 modifiedModelEntry.quantity = parseInt(value);
             }
@@ -75,7 +75,7 @@ define([
             _.each(this.model.bookingRequest.tickets, function (collection) {
                 _.each(collection, function (model) {
                     if (model.quantity != undefined) {
-                        bookingRequest.ticketRequests.push({priceCategory:model.priceCategory.id, quantity:model.quantity})
+                        bookingRequest.ticketRequests.push({ticketPrice:model.ticketPrice.id, quantity:model.quantity})
                     };
                 })
             });
@@ -116,7 +116,7 @@ define([
                 });
                 var id = function (item) {return item.id;};
                 // prepare a list of sections to populate the dropdown
-                var sections = _.uniq(_.sortBy(_.pluck(selectedShow.priceCategories, 'section'), id), true, id);
+                var sections = _.uniq(_.sortBy(_.pluck(selectedShow.ticketPrices, 'section'), id), true, id);
 
                 utilities.applyTemplate($(self.el), createBookingTemplate, { show:selectedShow,
                     performance:self.model.performance,
@@ -132,17 +132,17 @@ define([
         },
         refreshPrices:function (event) {
             if (event.currentTarget.value != "Choose a section") {
-                var priceCategories = _.filter(this.model.show.priceCategories, function (item) {
+                var ticketPrices = _.filter(this.model.show.ticketPrices, function (item) {
                     return item.section.id == event.currentTarget.value;
                 });
-                var priceCategoryInputs = new Array();
-                _.each(priceCategories, function (priceCategory) {
+                var ticketPriceInputs = new Array();
+                _.each(ticketPrices, function (ticketPrice) {
                     var model = {};
-                    model.priceCategory = priceCategory;
-                    priceCategoryInputs.push(model);
+                    model.ticketPrice = ticketPrice;
+                    ticketPriceInputs.push(model);
                 });
                 $("#ticketCategoriesViewPlaceholder").show();
-                this.ticketCategoriesView.model = priceCategoryInputs;
+                this.ticketCategoriesView.model = ticketPriceInputs;
                 this.ticketCategoriesView.render();
                 $(this.el).trigger('pagecreate');
             } else {
@@ -161,7 +161,7 @@ define([
             var totals = _.reduce(this.ticketCategoriesView.model, function (partial, model) {
                 if (model.quantity != undefined) {
                     partial.tickets += model.quantity;
-                    partial.price += model.quantity * model.priceCategory.price;
+                    partial.price += model.quantity * model.ticketPrice.price;
                     return partial;
                 }
             }, {tickets:0, price:0.0});

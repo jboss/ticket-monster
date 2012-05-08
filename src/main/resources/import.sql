@@ -63,41 +63,41 @@ insert into performance (id, show_id, date) values (9, 5, '2013-05-11 21:00:00')
 insert into TicketCategory (id, description) values (1, 'Adult');
 insert into TicketCategory (id, description) values (2, 'Child 0-14yrs');
 
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (1, 2, 100, 1, 167.75);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (2, 2, 101, 1, 197.75);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (3, 2, 102, 1, 167.75);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (4, 2, 103, 1, 155.0);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (5, 2, 104, 1, 155.0);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (6, 2, 105, 1, 155.0);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (7, 2, 106, 1, 122.5);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (8, 2, 100, 2, 157.50);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (9, 2, 101, 2, 187.50);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (10, 2, 102, 2, 157.50);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (11, 2, 103, 2, 145.0);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (12, 2, 104, 2, 145.0);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (13, 2, 105, 2, 145.0);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (14, 2, 106, 2, 112.5);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (1, 2, 100, 1, 167.75);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (2, 2, 101, 1, 197.75);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (3, 2, 102, 1, 167.75);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (4, 2, 103, 1, 155.0);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (5, 2, 104, 1, 155.0);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (6, 2, 105, 1, 155.0);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (7, 2, 106, 1, 122.5);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (8, 2, 100, 2, 157.50);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (9, 2, 101, 2, 187.50);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (10, 2, 102, 2, 157.50);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (11, 2, 103, 2, 145.0);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (12, 2, 104, 2, 145.0);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (13, 2, 105, 2, 145.0);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (14, 2, 106, 2, 112.5);
 
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (15, 1, 1, 1, 219.50);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (16, 1, 2, 1, 199.50);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (17, 1, 3, 1, 179.50);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (18, 1, 4, 1, 149.50);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (15, 1, 1, 1, 219.50);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (16, 1, 2, 1, 199.50);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (17, 1, 3, 1, 179.50);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (18, 1, 4, 1, 149.50);
 
 
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (19, 4, 100, 1, 167.75);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (20, 4, 101, 1, 197.75);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (21, 4, 102, 1, 167.75);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (22, 4, 103, 1, 155.0);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (23, 4, 104, 1, 155.0);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (24, 4, 105, 1, 155.0);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (25, 4, 106, 1, 122.5);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (19, 4, 100, 1, 167.75);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (20, 4, 101, 1, 197.75);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (21, 4, 102, 1, 167.75);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (22, 4, 103, 1, 155.0);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (23, 4, 104, 1, 155.0);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (24, 4, 105, 1, 155.0);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (25, 4, 106, 1, 122.5);
 
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (26, 3, 1, 1, 219.50);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (27, 3, 2, 1, 199.50);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (28, 3, 3, 1, 179.50);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (29, 3, 4, 1, 149.50);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (26, 3, 1, 1, 219.50);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (27, 3, 2, 1, 199.50);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (28, 3, 3, 1, 179.50);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (29, 3, 4, 1, 149.50);
 
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (30, 5, 5, 1, 219.50);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (31, 5, 6, 1, 199.50);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (32, 5, 7, 1, 179.50);
-insert into TicketPriceCategory (id, show_id, section_id, ticketcategory_id, price) values (33, 5, 8, 1, 149.50);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (30, 5, 5, 1, 219.50);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (31, 5, 6, 1, 199.50);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (32, 5, 7, 1, 179.50);
+insert into ticketprice (id, show_id, section_id, ticketcategory_id, price) values (33, 5, 8, 1, 149.50);

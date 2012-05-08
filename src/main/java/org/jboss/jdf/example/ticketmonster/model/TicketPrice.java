@@ -39,7 +39,7 @@ import org.jboss.errai.common.client.api.annotations.Portable;
 @JsonIgnoreProperties("show")
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "section_id", "show_id", "ticketcategory_id" }))
 @Portable
-public class TicketPriceCategory implements Serializable {
+public class TicketPrice implements Serializable {
 
     /* Declaration of fields */
 
@@ -136,7 +136,7 @@ public class TicketPriceCategory implements Serializable {
         this.price = price;
     }
 
-    /* equals() and hashCode() for TicketPriceCategory, using the natural identity of the object */
+    /* equals() and hashCode() for TicketPrice, using the natural identity of the object */
     
     @Override
     public boolean equals(Object o) {
@@ -145,7 +145,7 @@ public class TicketPriceCategory implements Serializable {
         if (o == null || getClass() != o.getClass())
             return false;
 
-        TicketPriceCategory that = (TicketPriceCategory) o;
+        TicketPrice that = (TicketPrice) o;
 
         if (section != null ? !section.equals(that.section) : that.section != null)
             return false;

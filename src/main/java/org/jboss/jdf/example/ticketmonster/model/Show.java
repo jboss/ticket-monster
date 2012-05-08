@@ -117,7 +117,7 @@ public class Show implements Serializable {
      * </p>
      */
     @OneToMany(mappedBy = "show", cascade = ALL, fetch = EAGER)
-    private Set<TicketPriceCategory> priceCategories = new HashSet<TicketPriceCategory>();
+    private Set<TicketPrice> ticketPrices = new HashSet<TicketPrice>();
 
     /* Boilerplate getters and setters */
 
@@ -153,12 +153,12 @@ public class Show implements Serializable {
         this.venue = venue;
     }
 
-    public Set<TicketPriceCategory> getPriceCategories() {
-        return priceCategories;
+    public Set<TicketPrice> getTicketPrices() {
+        return ticketPrices;
     }
 
-    public void setPriceCategories(Set<TicketPriceCategory> priceCategories) {
-        this.priceCategories = priceCategories;
+    public void setTicketPrices(Set<TicketPrice> ticketPrices) {
+        this.ticketPrices = ticketPrices;
     }
 
     /* toString(), equals() and hashCode() for Show, using the natural identity of the object */

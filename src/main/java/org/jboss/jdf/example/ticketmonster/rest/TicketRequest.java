@@ -11,17 +11,17 @@ package org.jboss.jdf.example.ticketmonster.rest;
  */
 public class TicketRequest {
 
-    private long priceCategory;
+    private long ticketPrice;
 
     private int quantity;
 
 
-    public long getPriceCategory() {
-        return priceCategory;
+    public long getTicketPrice() {
+        return ticketPrice;
     }
 
-    public void setPriceCategory(long priceCategory) {
-        this.priceCategory = priceCategory;
+    public void setTicketPrice(long ticketPrice) {
+        this.ticketPrice = ticketPrice;
     }
 
     public int getQuantity() {

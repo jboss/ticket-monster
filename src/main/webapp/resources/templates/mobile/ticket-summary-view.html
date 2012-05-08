@@ -12,9 +12,9 @@
     <% _.each(ticketRequest, function(model) { %>
     <% if (model.quantity != undefined) { %>
     <tr>
-        <td><%= model.priceCategory.section.name %></td>
-        <td><%= model.priceCategory.ticketCategory.description %></td>
-        <td>$<%= model.priceCategory.price %></td>
+        <td><%= model.ticketPrice.section.name %></td>
+        <td><%= model.ticketPrice.ticketCategory.description %></td>
+        <td>$<%= model.ticketPrice.price %></td>
         <td><%= model.quantity %></td>
     </tr>
     <% } %>
