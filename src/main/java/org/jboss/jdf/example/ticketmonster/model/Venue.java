@@ -66,7 +66,6 @@ public class Venue implements Serializable {
     /**
      * The address of the venue
      */
-    @Embedded
     private Address address = new Address();
 
     /**

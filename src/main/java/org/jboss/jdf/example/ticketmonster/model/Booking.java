@@ -55,19 +55,24 @@ public class Booking implements Serializable {
      * 
      * <p>
      * The set of tickets is eagerly loaded because FIXME . All operations are cascaded to each ticket, so for example if a
-     * booking is removed, then all associated tickets will be removed. FIXME discuss <code>@JoinColumn</code>
+     * booking is removed, then all associated tickets will be removed.
      * </p>
      * 
+     * <p>
+     * This relationship is uni-directional, so we need to inform JPA to create a foreign key mapping. The foreign key mapping
+     * is not visible in the {@link Ticket} entity despite being present in the database.
+     * </p>
      * 
      */
     @OneToMany(fetch = EAGER, cascade = ALL)
-    @JoinColumn(name = "booking_id")
+    @JoinColumn
     @NotEmpty
     @Valid
     private Set<Ticket> tickets = new HashSet<Ticket>();
 
     /**
-     * The performance of the show with which the booking is validated.  The <code>@ManyToOne<code> JPA mapping establishes this relationship.
+     * The performance of the show with which the booking is validated. The
+     * <code>@ManyToOne<code> JPA mapping establishes this relationship.
      */
     @ManyToOne
     private Performance performance;
