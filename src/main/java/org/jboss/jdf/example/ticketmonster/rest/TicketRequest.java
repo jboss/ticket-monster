@@ -1,5 +1,7 @@
 package org.jboss.jdf.example.ticketmonster.rest;
 
+import org.jboss.jdf.example.ticketmonster.model.TicketPrice;
+
 /**
  * <p>
  * A {@link BookingRequest} will contain multiple {@link TicketRequest}s.
@@ -15,6 +17,14 @@ public class TicketRequest {
 
     private int quantity;
 
+    public TicketRequest() {
+        // Empty constructor
+    }
+
+    public TicketRequest(TicketPrice ticketPrice, int quantity) {
+        this.ticketPrice = ticketPrice.getId();
+        this.quantity = quantity;
+    }
 
     public long getTicketPrice() {
         return ticketPrice;

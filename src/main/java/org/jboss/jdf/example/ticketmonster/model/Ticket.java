@@ -97,4 +97,9 @@ public class Ticket implements Serializable {
     public Seat getSeat() {
         return seat;
     }
+    
+    @Override
+    public String toString() {
+        return new StringBuilder().append(getSeat()).append(" @ ").append(getPrice()).append(" (").append(getTicketCategory()).append(")").toString(); 
+    }
 }

@@ -1,9 +1,7 @@
 package org.jboss.jdf.example.ticketmonster.rest;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.ejb.Singleton;
 import javax.persistence.Query;
@@ -18,7 +16,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
 import org.jboss.jdf.example.ticketmonster.model.Show;
-import org.jboss.jdf.example.ticketmonster.model.TicketPrice;
 
 /**
  * @author Marius Bogoevici
@@ -49,26 +46,6 @@ public class ShowService extends BaseEntityService<Show> {
             predicates.add(criteriaBuilder.equal(root.get("event").get("id"), event));
         }
         return predicates.toArray(new Predicate[]{});
-    }
-    
-    @GET
-    @Path("/{showId:[0-9][0-9]*}/pricing")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Map<Long,List<TicketPrice>> getPricing(@PathParam("showId") Long showId) {
-        Query query = getEntityManager().createQuery("select tp from TicketPrice where tp.show.id = :showId order by tp.section.id");
-        query.setParameter("showId", showId);
-        
-        @SuppressWarnings("unchecked")
-        List<TicketPrice> ticketPrices = query.getResultList();
-        
-        Map<Long, List<TicketPrice>> ticketPriceMap = new LinkedHashMap<Long, List<TicketPrice>> ();
-        for (TicketPrice ticketPrice : ticketPrices) {
-           if (!ticketPriceMap.containsKey(ticketPrice.getSection().getId())) {
-               ticketPriceMap.put(ticketPrice.getSection().getId(), new ArrayList<TicketPrice>());
-           }
-           ticketPriceMap.get(ticketPrice.getSection().getId()).add(ticketPrice);
-        }
-        return ticketPriceMap;
     }
 
     @GET

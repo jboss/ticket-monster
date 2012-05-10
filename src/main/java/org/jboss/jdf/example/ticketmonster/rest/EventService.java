@@ -55,10 +55,6 @@ public class EventService extends BaseEntityService<Event> {
             String category = queryParameters.getFirst("category");
             predicates.add(criteriaBuilder.equal(root.get("category").get("id"), category));
         }
-        if (queryParameters.containsKey("major")) {
-            String major = queryParameters.getFirst("major");
-            predicates.add(criteriaBuilder.equal(root.get("major"), Boolean.parseBoolean(major)));
-        }
         
         return predicates.toArray(new Predicate[]{});
     }

@@ -92,12 +92,15 @@ public abstract class BaseEntityService<T> {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<T> getAll(@Context UriInfo uriInfo) {
+        return getAll(uriInfo.getQueryParameters());
+    }
+    
+    public List<T> getAll(MultivaluedMap<String, String> queryParameters) {
         final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         final CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(entityClass);
         Root<T> root = criteriaQuery.from(entityClass);
-        Predicate[] predicates = extractPredicates(uriInfo.getQueryParameters(), criteriaBuilder, root);
+        Predicate[] predicates = extractPredicates(queryParameters, criteriaBuilder, root);
         criteriaQuery.select(criteriaQuery.getSelection()).where(predicates);
-        final MultivaluedMap<String,String> queryParameters = uriInfo.getQueryParameters();
         
         TypedQuery<T> query = entityManager.createQuery(criteriaQuery);
         if (queryParameters.containsKey("first")) {
