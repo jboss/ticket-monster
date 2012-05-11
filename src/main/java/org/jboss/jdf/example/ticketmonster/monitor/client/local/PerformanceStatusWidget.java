@@ -55,7 +55,7 @@ public class PerformanceStatusWidget extends Composite {
         performancePanel.add(new Label(date));
         performancePanel.add(progressBar);
         performancePanel.add(bookingStatusLabel);
-        performancePanel.getElement().setAttribute("cellpadding", "5");
+        performancePanel.setStyleName("performance-status");
         initWidget(performancePanel);
     }
 
@@ -85,12 +85,12 @@ public class PerformanceStatusWidget extends Composite {
         }
 
         soldPercentLabel = new Label();
-        soldPercentLabel.getElement().setAttribute(
-                "style", "height: 18px; width: " + soldPercent + "px;" + " background-color: #cc0000");
-
+        soldPercentLabel.setStyleName("performance-status-progress-sold");
+        soldPercentLabel.setWidth(soldPercent + "px");
+        
         availablePercentLabel = new Label();
-        availablePercentLabel.getElement().setAttribute(
-                "style", "height: 18px; width: " + (100 - soldPercent) + "px;" + " background-color: #009900");
+        availablePercentLabel.setStyleName("performance-status-progress-available");
+        availablePercentLabel.setWidth((100 - soldPercent) + "px");
 
         progressBar.add(soldPercentLabel);
         progressBar.add(availablePercentLabel);
