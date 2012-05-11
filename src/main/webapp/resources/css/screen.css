@@ -106,7 +106,7 @@ label {
 }
 
 .performance-status-progress-sold {
-	margin-right: 5px; 
+	margin-left: 5px; 
 	height: 18px;
 	background: #cc0000;
 }
