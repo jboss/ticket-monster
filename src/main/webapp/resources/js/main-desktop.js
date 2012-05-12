@@ -9,7 +9,7 @@ require.config({
         underscore:'libs/underscore',
         text:'libs/text',
         order:'libs/order',
-        bootstrap: '../bootstrap/js/bootstrap',
+        bootstrap: 'libs/bootstrap',
         utilities: 'app/utilities',
         router:'app/router/desktop/router'
     }

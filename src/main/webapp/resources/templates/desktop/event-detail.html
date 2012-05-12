@@ -1,4 +1,4 @@
-<div class="row-fluid">
+<div class="row-fluid" xmlns="http://www.w3.org/1999/html">
     <h2 class="page-header"><%=name%></h2>
 </div>
 <div class="row-fluid">
@@ -9,9 +9,6 @@
             <p>&nbsp;</p>
 
             <div class="span12"><%= description %></div>
-        </div>
-        <div class="row-fluid">
-
         </div>
     </div>
     <div class="span4 well">
@@ -24,8 +21,12 @@
     </div>
     <div id='bookingWhen' style="display: none;" class="span2 well">
         <h3 class="page-header">When?</h3>
-        <select class="span2" id="dayPicker"/>
+        <select class="span2" id="dayPicker">
+            <option value="-1">Select a day</option>
+        </select>
         <select class="span2" id="performanceTimes"/>
+            <option value="-1">Select a time</option>
+        </select>
 
         <div id='bookingOption'><input name="bookButton" class="btn btn-primary" type="button"
                                        value="Order tickets"></div>
