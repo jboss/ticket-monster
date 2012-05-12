@@ -4,37 +4,26 @@
 </div>
 <div data-role="content" id='itemMenu'>
     <div id='categoryMenu' data-role='listview' data-filter='true' data-filter-placeholder='Event category name ...'>
-
         <%
         _.each(categories, function (category) {
         %>
-
-
         <li>
             <a href="#"><%= category.description %></a>
             <ul id="category-<%=category.id%>">
-
-                    <%
-                    _.each(model.models, function (model) {
-                    if (model.get('category').id == category.id) {
-                    %>
+                <%
+                _.each(model.models, function (model) {
+                if (model.get('category').id == category.id) {
+                %>
                 <li>
                     <a href="#events/<%=model.attributes.id%>"><%=model.attributes.name%></a>
                 </li>
-                    <% }
-
-                    });
-                    %>
-
+                <% }
+                });
+                %>
             </ul>
         </li>
-
-
-
         <% }); %>
     </div>
-
-
 </div>
 
 

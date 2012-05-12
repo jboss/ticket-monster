@@ -56,15 +56,11 @@ define('utilities',[
         return val;
     };
 
-    // utility functions for
+    // utility functions for rendering templates
     var utilities = {
         renderTemplate:function (template, data) {
-            if (!(template.html == undefined)) {
-                return _.template(template.html(), (data == undefined) ? {} : data);
-            }
             return _.template(template, (data == undefined) ? {} : data);
         },
-
         applyTemplate:function (target, template, data) {
             return target.empty().append(this.renderTemplate(template, data));
         }
