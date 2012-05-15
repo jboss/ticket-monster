@@ -4,22 +4,16 @@
 <div class="row-fluid">
     <div class="span5 well">
         <h4 class="page-header">Checkout information</h4>
-
         <p><strong>Email: </strong><%= booking.contactEmail %></p>
-
         <p><strong>Event: </strong> <%= performance.event.name %></p>
-
         <p><strong>Venue: </strong><%= performance.venue.name %></p>
-
         <p><strong>Date: </strong><%= new Date(booking.performance.date).toPrettyString() %></p>
-
         <p><strong>Created on: </strong><%= new Date(booking.createdOn).toPrettyString() %></p>
     </div>
     <div class="span5 well">
         <h4 class="page-header">Ticket allocations</h4>
         <table class="table table-striped table-bordered" style="background-color: #fffffa;">
             <thead>
-
             <tr>
                 <th>Ticket #</th>
                 <th>Category</th>

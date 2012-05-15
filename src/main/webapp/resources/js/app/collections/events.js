@@ -11,9 +11,9 @@ define([
      *  We will use it for CRUD operations on Bookings
      */
     var Events = Backbone.Collection.extend({
-        url:"rest/events",
+        url:"rest/events", // the URL for performing CRUD operations
         model: Event,
-        id:"id",
+        id:"id", // the 'id' property of the model is the identifier
         comparator:function (model) {
             return model.get('category').id;
         }

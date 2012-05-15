@@ -1,12 +1,11 @@
 define([
     'backbone',
     'utilities',
-    'text!../../../../templates/desktop/venues.html',
-    'backbone'
+    'text!../../../../templates/desktop/venues.html'
 ], function (
     Backbone,
     utilities,
-    eventsTemplate) {
+    venuesTemplate) {
 
     var EventsView = Backbone.View.extend({
         events:{
@@ -17,7 +16,7 @@ define([
                 _.map(this.model.models, function(model){
                     return model.get('address').city
                 }));
-            utilities.applyTemplate($(this.el), eventsTemplate, {cities: cities, model:this.model});
+            utilities.applyTemplate($(this.el), venuesTemplate, {cities: cities, model:this.model});
             $(this.el).find('.item:first').addClass('active');
             $(".collapse").collapse();
             $("a[rel='popover']").popover({trigger:'hover'});

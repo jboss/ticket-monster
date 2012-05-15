@@ -38,8 +38,8 @@ define("router", [
             BookingDetailView) {
 
     /**
-     * The Router class contains all the routes within the application - i.e. URLs and the actions
-     * that will be taken as a result.
+     * The Router class contains all the routes within the application - 
+     * i.e. URLs and the actions that will be taken as a result.
      *
      * @type {Router}
      */
@@ -63,37 +63,43 @@ define("router", [
             var eventsView = new EventsView({model:events, el:$("#content")});
             events.bind("reset",
                 function () {
-                    eventsView.render()
-                }).fetch()
+                    eventsView.render();
+                }).fetch();
         },
         venues:function () {
             var venues = new Venues;
-            var venuesView = new VenuesView({model:venues, el:$("#content")})
+            var venuesView = new VenuesView({model:venues, el:$("#content")});
             venues.bind("reset",
                 function () {
-                    venuesView.render()
-                }).fetch()
+                    venuesView.render();
+                }).fetch();
         },
         about:function () {
-            new AboutView({el:$("#content")}).render()
+            new AboutView({el:$("#content")}).render();
         },
         bookTickets:function (showId, performanceId) {
-            var createBookingView = new CreateBookingView({model:{showId:showId, performanceId:performanceId, bookingRequest:{tickets:[]}}, el:$("#content")})
-            createBookingView.render()
+            var createBookingView = 
+            	new CreateBookingView({
+            		model:{ showId:showId, 
+            			    performanceId:performanceId, 
+            			    bookingRequest:{tickets:[]}}, 
+            			    el:$("#content")
+            			   });
+            createBookingView.render();
         },
         listBookings:function () {
             var bookings = new Bookings;
-            var bookingsView = new BookingsView({model:bookings, el:$("#content")})
-
+            var bookingsView = new BookingsView({ 
+            	model:bookings, 
+            	 el:$("#content")});
             bookings.bind("destroy",
                 function () {
                     bookings.fetch({success:function () {
-                        bookingsView.render()
-                    }})
+                        bookingsView.render();
+                    }});
                 });
-
             bookings.fetch({success:function () {
-                bookingsView.render()
+                bookingsView.render();
             }});
         },
         eventDetail:function (id) {
@@ -101,24 +107,24 @@ define("router", [
             var eventDetailView = new EventDetailView({model:model, el:$("#content")});
             model.bind("change",
                 function () {
-                    eventDetailView.render()
-                }).fetch()
+                    eventDetailView.render();
+                }).fetch();
         },
         venueDetail:function (id) {
             var model = new Venue({id:id});
             var venueDetailView = new VenueDetailView({model:model, el:$("#content")});
             model.bind("change",
                 function () {
-                    venueDetailView.render()
-                }).fetch()
+                    venueDetailView.render();
+                }).fetch();
         },
         bookingDetail:function (id) {
             var bookingModel = new Booking({id:id});
-            var bookingDetailView = new BookingDetailView({model:bookingModel, el:$("#content")})
+            var bookingDetailView = new BookingDetailView({model:bookingModel, el:$("#content")});
             bookingModel.bind("change",
                 function () {
-                    bookingDetailView.render()
-                }).fetch()
+                    bookingDetailView.render();
+                }).fetch();
 
         }
     });

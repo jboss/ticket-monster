@@ -31,8 +31,7 @@ require([
     'order!backbone',
     'text',
     'order!bootstrap',
-    'text!../templates/templates.html',
     'order!router'
 ], function(){
-    console.log('all loaded')
+    console.log('all loaded');
 });

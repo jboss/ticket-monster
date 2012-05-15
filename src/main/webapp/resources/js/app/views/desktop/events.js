@@ -1,8 +1,7 @@
 define([
     'backbone',
     'utilities',
-    'text!../../../../templates/desktop/events.html',
-    'backbone'
+    'text!../../../../templates/desktop/events.html'
 ], function (
     Backbone,
     utilities,

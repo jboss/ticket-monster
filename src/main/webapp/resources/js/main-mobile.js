@@ -11,7 +11,6 @@ require.config({
         order: 'libs/order',
         utilities: 'app/utilities',
         router:'app/router/mobile/router'
-
     }
 });
 
@@ -32,6 +31,6 @@ define("backbone", [
 
 // Now we declare all the dependencies
 require(['router'],
-       function(router){
+       function(){
     console.log('all loaded')
 });

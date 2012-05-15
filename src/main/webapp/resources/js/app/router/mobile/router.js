@@ -71,13 +71,13 @@ define("router",[
         },
         defaultHandler:function (actions) {
             if ("" != actions) {
-                $.mobile.changePage("#" + actions, {transition:'slide', changeHash:false, allowSamePageTransition:true})
+                $.mobile.changePage("#" + actions, {transition:'slide', changeHash:false, allowSamePageTransition:true});
             }
         },
         home:function () {
             utilities.applyTemplate($("#container"), HomeViewTemplate);
             try {
-                $("#container").trigger('pagecreate')
+                $("#container").trigger('pagecreate');
             } catch (e) {
                 // workaround for a spurious error thrown when creating the page initially
             }
@@ -87,16 +87,16 @@ define("router",[
             var eventsView = new EventsView({model:events, el:$("#container")});
             events.bind("reset",
                 function () {
-                    eventsView.render()
+                    eventsView.render();
                 }).fetch();
         },
         venues:function () {
             var venues = new Venues;
-            var venuesView = new VenuesView({model:venues, el:$("#container")})
+            var venuesView = new VenuesView({model:venues, el:$("#container")});
             venues.bind("reset",
                 function () {
-                    venuesView.render()
-                }).fetch()
+                    venuesView.render();
+                }).fetch();
         },
         about:function () {
             new AboutView({el:$("#container")}).render();
@@ -107,13 +107,13 @@ define("router",[
         },
         listBookings:function () {
             var bookings = new Bookings();
-            var bookingsView = new BookingsView({model:bookings, el:$("#container")})
+            var bookingsView = new BookingsView({model:bookings, el:$("#container")});
             bookings.bind("reset",
                 function () {
-                    bookingsView.render()
+                    bookingsView.render();
                 }).bind("destroy",
                 function () {
-                    this.fetch()
+                    this.fetch();
                 }).fetch();
         },
         eventDetail:function (id) {
@@ -121,7 +121,7 @@ define("router",[
             var eventDetailView = new EventDetailView({model:model, el:$("#container")});
             model.bind("change",
                 function () {
-                    eventDetailView.render()
+                    eventDetailView.render();
                     $.mobile.changePage($("#container"), {transition:'slide', changeHash:false});
                 }).fetch();
         },
@@ -130,13 +130,13 @@ define("router",[
             var venueDetailView = new VenueDetailView({model:model, el:$("#container")});
             model.bind("change",
                 function () {
-                    venueDetailView.render()
+                    venueDetailView.render();
                     $.mobile.changePage($("#container"), {transition:'slide', changeHash:false});
                 }).fetch();
         },
         bookingDetail:function (id) {
             var bookingModel = new Booking({id:id});
-            var bookingDetailView = new BookingDetailView({model:bookingModel, el:$("#content")})
+            var bookingDetailView = new BookingDetailView({model:bookingModel, el:$("#content")});
             bookingModel.bind("change",
                 function () {
                     bookingDetailView.render();

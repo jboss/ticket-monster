@@ -103,8 +103,8 @@ define([
         events:{
             "click a[id='confirmBooking']":"checkout",
             "change select":"refreshPrices",
-            "change input[type='number']":"updateForm",
-            "change input[name='email']":"updateForm"
+            "blur input[type='number']":"updateForm",
+            "blur input[name='email']":"updateForm"
         },
         render:function () {
 
