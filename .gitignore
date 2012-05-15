@@ -1,5 +1,6 @@
 .project
-.settings
+.settings/*
+!.settings/.jsdtscope
 .classpath
 target
 .idea
