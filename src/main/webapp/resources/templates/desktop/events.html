@@ -18,7 +18,7 @@
                         _.each(model.models, function (model) {
                         if (model.get('category').id == category.id) {
                         %>
-                        <p><a href="#venues/<%=model.attributes.id%>" rel="popover"
+                        <p><a href="#events/<%=model.attributes.id%>" rel="popover"
                               data-content="<%=model.attributes.description%>"
                               data-original-title="<%=model.attributes.name%>"><%=model.attributes.name%></a></p>
                         <% }
