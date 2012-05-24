@@ -55,7 +55,7 @@ public class Venue implements Serializable {
      * </p>
      * 
      * <p>
-     * The name must not be null and must be one or more characters, the Bean Validation constrain <code>@NotEmpty</code>
+     * The name must not be null and must be one or more characters, the Bean Validation constraint <code>@NotEmpty</code>
      * enforces this.
      * </p>
      */

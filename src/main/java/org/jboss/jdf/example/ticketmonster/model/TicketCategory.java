@@ -48,7 +48,7 @@ public class TicketCategory implements Serializable {
      * </p>
      * 
      * <p>
-     * The description must not be null and must be one or more characters, the Bean Validation constrain <code>@NotEmpty</code>
+     * The description must not be null and must be one or more characters, the Bean Validation constraint <code>@NotEmpty</code>
      * enforces this.
      * </p>
      * 

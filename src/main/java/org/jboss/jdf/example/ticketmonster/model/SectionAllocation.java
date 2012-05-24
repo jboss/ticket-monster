@@ -66,7 +66,7 @@ public class SectionAllocation {
      * </p>
      * 
      * <p>
-     * The performance must be specified, so we add the Bean Validation constrain <code>@NotNull</code>
+     * The performance must be specified, so we add the Bean Validation constraint <code>@NotNull</code>
      * </p>
      */
     @ManyToOne
@@ -79,7 +79,7 @@ public class SectionAllocation {
      * </p>
      * 
      * <p>
-     * The section must be specified, so we add the Bean Validation constrain <code>@NotNull</code>
+     * The section must be specified, so we add the Bean Validation constraint <code>@NotNull</code>
      * </p>
      */
     @ManyToOne
